@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
-function TableDashboard() {
+
+function TableDashboard({ isDeveloper }) {
   return (
     <div className="container">
-       <div className="d-flex justify-content-between mb-3">
-        <h3>Users</h3>
-        <Link to="add" className="btn btn-primary"> Add New Users
+      <div className="d-flex justify-content-between mb-3">
+        <h3>{isDeveloper ? "Developers" : "Users"}</h3>
+        
+        <Link to="add" className="btn btn-primary"> 
+          {isDeveloper ? "Add New Developer" : "Add New Users"}
         </Link>
       </div>
       <table className="table">
@@ -22,10 +25,16 @@ function TableDashboard() {
             <td>John Doe</td>
             <td>john@example.com</td>
             <td>
-              <Link to="/Users/1" className="btn btn-sm btn-outline-primary">
+              <Link 
+                to={isDeveloper ? "/Developers/1" : "/Users/1"} 
+                className="btn btn-sm btn-outline-primary"
+              >
                 View
               </Link>
-              <Link to="/Users/1/edit" className="btn btn-sm btn-outline-secondary">
+              <Link 
+                to={isDeveloper ? "/Developers/1/edit" : "/Users/1/edit"} 
+                className="btn btn-sm btn-outline-secondary ms-1"
+              >
                 Edit
               </Link>
             </td>
@@ -35,4 +44,5 @@ function TableDashboard() {
     </div>
   );
 }
+
 export default TableDashboard;
